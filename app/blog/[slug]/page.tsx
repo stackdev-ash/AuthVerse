@@ -22,11 +22,11 @@ export default async function BlogPage({ params }: PageProps) {
 
   const session = await auth();
 
-  const isOwner = session?.user?.id === blog?.authorId;
-
   if (!blog) {
     notFound();
   }
+  
+  const isOwner = session?.user?.id === blog?.authorId;
 
   await prisma.blog.update({
     where: {
@@ -85,7 +85,7 @@ export default async function BlogPage({ params }: PageProps) {
         </div>
 
         <div className="mt-10 flex flex-wrap gap-2">
-          {blog.tags.map((tag:any) => (
+          {blog.tags.map((tag) => (
             <span key={tag} className="rounded-full border px-3 py-1 text-sm">
               #{tag}
             </span>
